@@ -95,8 +95,19 @@ body{color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased
   .act.add:hover{background:var(--navy-dk)}
 }
 .act:active{background:var(--navy);color:var(--white)}
+.act.nfc{grid-column:1/-1}
+.act.nfc::before{display:none}
+.act.nfc .ico{width:20px;height:20px;flex:none}
 .act:active::before{background:var(--white)}
 .act:focus-visible,.qr-tools button:focus-visible,.qr-close:focus-visible{outline:3px solid var(--navy);outline-offset:2px;z-index:1}
+.certs{display:flex;justify-content:center;align-items:center;gap:calc(var(--u)*6);align-self:stretch}
+.cert{width:calc(var(--u)*15);padding:0;background:none;border:0;cursor:zoom-in;-webkit-tap-highlight-color:transparent}
+.cert img{display:block;width:100%;height:auto;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+@media (hover:hover){.cert:hover img{transform:scale(1.06)}}
+.cert:focus-visible{outline:3px solid var(--navy);outline-offset:4px;border-radius:4px}
+.cert-view{position:fixed;inset:0;z-index:50;background:var(--white);display:flex;align-items:center;justify-content:center;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.cert-view img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 10px 40px rgba(25,26,85,.18)}
 .foot{margin:0;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--muted)}
 
 /* ---------- QR view ---------- */
@@ -152,7 +163,11 @@ body{color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased
           </div>
           <button class="f-qr" id="cardQr" type="button" aria-label="Ver QR en grande">
             <svg viewBox="0 0 25 25" aria-hidden="true" shape-rendering="crispEdges"><path fill="#191A55" d="M0 0h7v1h-7zM8 0h2v1h-2zM15 0h1v1h-1zM18 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM11 1h3v1h-3zM15 1h1v1h-1zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h1v1h-1zM12 2h1v1h-1zM14 2h2v1h-2zM18 2h1v1h-1zM20 2h3v1h-3zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h2v1h-2zM14 3h1v1h-1zM18 3h1v1h-1zM20 3h3v1h-3zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h3v1h-3zM14 4h3v1h-3zM18 4h1v1h-1zM20 4h3v1h-3zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM13 5h4v1h-4zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h7v1h-7zM8 7h1v1h-1zM10 7h2v1h-2zM13 7h2v1h-2zM1 8h2v1h-2zM4 8h1v1h-1zM6 8h2v1h-2zM9 8h3v1h-3zM13 8h4v1h-4zM18 8h1v1h-1zM20 8h5v1h-5zM0 9h4v1h-4zM5 9h1v1h-1zM9 9h2v1h-2zM16 9h1v1h-1zM18 9h1v1h-1zM24 9h1v1h-1zM0 10h5v1h-5zM6 10h1v1h-1zM10 10h4v1h-4zM17 10h4v1h-4zM22 10h3v1h-3zM1 11h1v1h-1zM3 11h2v1h-2zM8 11h1v1h-1zM10 11h1v1h-1zM12 11h7v1h-7zM23 11h1v1h-1zM0 12h3v1h-3zM5 12h2v1h-2zM8 12h2v1h-2zM14 12h1v1h-1zM16 12h3v1h-3zM21 12h1v1h-1zM23 12h2v1h-2zM2 13h2v1h-2zM5 13h1v1h-1zM13 13h1v1h-1zM16 13h3v1h-3zM21 13h1v1h-1zM24 13h1v1h-1zM0 14h1v1h-1zM2 14h2v1h-2zM5 14h6v1h-6zM16 14h2v1h-2zM19 14h1v1h-1zM22 14h3v1h-3zM1 15h5v1h-5zM10 15h2v1h-2zM13 15h4v1h-4zM18 15h1v1h-1zM20 15h1v1h-1zM23 15h1v1h-1zM0 16h1v1h-1zM2 16h1v1h-1zM4 16h1v1h-1zM6 16h6v1h-6zM14 16h1v1h-1zM16 16h6v1h-6zM8 17h3v1h-3zM12 17h1v1h-1zM14 17h1v1h-1zM16 17h1v1h-1zM20 17h2v1h-2zM23 17h2v1h-2zM0 18h7v1h-7zM8 18h1v1h-1zM15 18h2v1h-2zM18 18h1v1h-1zM20 18h2v1h-2zM23 18h2v1h-2zM0 19h1v1h-1zM6 19h1v1h-1zM10 19h1v1h-1zM13 19h2v1h-2zM16 19h1v1h-1zM20 19h2v1h-2zM23 19h1v1h-1zM0 20h1v1h-1zM2 20h3v1h-3zM6 20h1v1h-1zM8 20h4v1h-4zM16 20h6v1h-6zM23 20h2v1h-2zM0 21h1v1h-1zM2 21h3v1h-3zM6 21h1v1h-1zM9 21h3v1h-3zM19 21h4v1h-4zM0 22h1v1h-1zM2 22h3v1h-3zM6 22h1v1h-1zM8 22h2v1h-2zM11 22h2v1h-2zM14 22h3v1h-3zM20 22h1v1h-1zM24 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM10 23h2v1h-2zM14 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM20 23h2v1h-2zM23 23h1v1h-1zM0 24h7v1h-7zM9 24h1v1h-1zM11 24h2v1h-2zM14 24h3v1h-3zM18 24h2v1h-2zM23 24h2v1h-2z"/></svg>
-          </button>
+    </button>
+    <button class="act nfc" id="nfcWrite" type="button" hidden>
+      <svg class="ico" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8.5 4.5c5 5 5 12 0 17"/><path d="M13.5 7.5c3.2 3.2 3.2 7.8 0 11"/><path d="M18.5 10.5c1.5 1.4 1.5 3.6 0 5"/></svg>
+      Grabar etiqueta NFC<svg class="arr" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"/></svg>
+    </button>
           <div class="rail"></div>
           <div class="glare"></div>
         </div>
@@ -190,6 +205,12 @@ body{color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased
     <button class="act" id="openQr" type="button">Ver QR<svg class="arr" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"/></svg></button>
   </nav>
 
+  <section class="certs" aria-label="Certificaciones">
+    <button class="cert" type="button"><img src="certificado1.png" alt="Certificado 1" loading="lazy" decoding="async"></button>
+    <button class="cert" type="button"><img src="certificado2.png" alt="Certificado 2" loading="lazy" decoding="async"></button>
+    <button class="cert" type="button"><img src="certificado3.png" alt="Certificado 3" loading="lazy" decoding="async"></button>
+  </section>
+
   <p class="foot"><span>Evolutek</span><span>Talara · Perú</span></p>
 </main>
 </div>
@@ -207,6 +228,11 @@ body{color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased
     <button type="button" id="copyBtn" aria-pressed="false">Copiar</button>
   </div>
   <p class="phone" id="phoneLine" hidden>+51 926 692 238</p>
+</div>
+
+<div class="cert-view" id="certView" hidden role="dialog" aria-modal="true" aria-label="Certificado">
+  <button class="qr-close" id="certClose" type="button" aria-label="Cerrar"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 2l14 14M16 2 2 16"/></svg></button>
+  <img id="certImg" src="" alt="">
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -245,8 +271,8 @@ body{color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased
         var nx=(x-ox)/W;
         var v=Math.sin(nx*6.2+k*1.1)*.5+Math.sin(ny*5.1-k*.85+nx*2.4)*.5;
         v=v*.5+.5;
-        var band=Math.exp(-Math.pow((ny-.5-.18*Math.sin(nx*4+k*.6))*3,2));
-        var e=v*band; if(e<.16) continue;
+        var band=.5+.5*Math.sin(ny*3.4-k*.5+nx*2.2);
+        var e=v*(.35+.65*band); if(e<.16) continue;
         var i=Math.min(CH.length-1,Math.floor(e*CH.length));
         cx.globalAlpha=Math.min(1,.3+e*1.1);
         cx.drawImage(SPS[i>2?1:0][i],x-SW/2,y-SH/2);
@@ -348,6 +374,18 @@ body{color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased
     try{ navigator.clipboard.writeText(txt).then(function(){ toast(mode==='vc'?'Número copiado':'Enlace copiado'); },fail); }catch(_){ fail(); }
   });
 
+  /* ---- certificates ---- */
+  var certView=document.getElementById('certView'), certImg=document.getElementById('certImg'), certOpen=null;
+  function closeCert(){ certView.hidden=true; if(certOpen){ certOpen.focus(); certOpen=null; } }
+  Array.prototype.forEach.call(document.querySelectorAll('.cert'),function(b){
+    b.addEventListener('click',function(){
+      var im=b.querySelector('img'); certImg.src=im.currentSrc||im.src; certImg.alt=im.alt;
+      certOpen=b; certView.hidden=false; document.getElementById('certClose').focus();
+    });
+  });
+  document.getElementById('certClose').addEventListener('click',closeCert);
+  certView.addEventListener('keydown',function(e){ if(e.key==='Escape') closeCert(); });
+
   /* ---- add to contacts ---- */
   var VCF='BEGIN:VCARD\r\nVERSION:3.0\r\nN:Esquerre;Deny;;;\r\nFN:Deny Esquerre\r\nORG:Evolutek\r\nTEL;TYPE=CELL,VOICE:+51926692238\r\nEMAIL;TYPE=WORK:administracion@evolutek.pe\r\nURL:https://evolutek.pe\r\nNOTE:Industria 4.0\r\nEND:VCARD\r\n';
   var inViewer=!!(window.claude && typeof window.claude.use==='function');
@@ -358,6 +396,21 @@ body{color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased
     setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); },1500);
     toast('Contacto listo');
   });
+  /* ---- NFC ---- */
+  var NFC_URL='https://tarjetaevolutek.vercel.app/';
+  var nfcBtn=document.getElementById('nfcWrite');
+  if(nfcBtn&&'NDEFReader' in window){
+    nfcBtn.hidden=false;
+    nfcBtn.addEventListener('click',function(){
+      toast('Acerca la etiqueta al teléfono');
+      try{
+        new NDEFReader().write({records:[{recordType:'url',data:NFC_URL}]}).then(
+          function(){ toast('Etiqueta NFC grabada'); },
+          function(){ toast('No se pudo grabar la etiqueta'); }
+        );
+      }catch(_){ toast('NFC no disponible'); }
+    });
+  }
 })();
 </script>
 
